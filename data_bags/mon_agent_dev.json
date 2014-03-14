@@ -1,0 +1,9 @@
+{
+    "id" : "mon_agent_us_ae1-2",
+    "keystone" : {
+        "url" : "https://keystone.rndd.aw1.hpcloud.net:35357/v3/auth/tokens"
+    }
+    "monapi" : {
+        "url" : "https://TBD_CHANGE_ME/v2.0/metrics"
+    }
+}
