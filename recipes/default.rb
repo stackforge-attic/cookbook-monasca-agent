@@ -38,6 +38,17 @@ end
 #creds = data_bag_item(node[:mon_agent][:data_bag], 'mon_credentials')
 setting = data_bag_item(node[:mon_agent][:data_bag], 'mon_agent')
 
+template "/etc/init/mon-agent.conf" do
+  action :create
+  owner 'root'
+  group 'root'
+  mode '640'
+  source "mon-agent-init.conf.erb"
+  variables(
+    :setting => setting
+  )
+end
+
 template "/etc/dd-agent/datadog.conf" do
   action :create
   owner 'root'
@@ -50,21 +61,11 @@ template "/etc/dd-agent/datadog.conf" do
     :api_key => node['mon-agent']['api_key'],
     :dd_url => node['mon-agent']['url']
   )
-  notifies :restart, "service[mon-agent]"
-end
-
-template "/etc/init/mon-agent.conf" do
-  action :create
-  owner 'root'
-  group 'root'
-  mode '640'
-  source "mon-agent-init.conf.erb"
-  variables(
-    :setting => setting
-  )
+#  notifies :restart, "service[mon-agent]"
 end
 
 service 'mon-agent' do
   action :enable
   provider Chef::Provider::Service::Upstart
 end
+

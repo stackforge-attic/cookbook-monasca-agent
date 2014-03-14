@@ -1,6 +1,11 @@
 # Add tags as override attributes in your role
 default['mon-agent']['tags'] = ""
 
+# Datadog defaults
+default['mon-agent']['dd_url'] = "https://app.datadoghq.com"
+default['mon-agent']['api_key'] = nil
+default['mon-agent']['collect_ec2_tags'] = "no"
+
 # Repository configuration
 default['mon-agent']['installrepo'] = true
 default['mon-agent']['aptrepo'] = "http://apt.datadoghq.com"

@@ -8,4 +8,4 @@ respawn
 
 setgid mon_agent
 setuid mon_agent
-exec /usr/bin/python <%= @setting['installation_dir']%>/agent.py start
+exec /usr/bin/python /usr/lib/python2.7/dist-packages/monagent/agent.py start
