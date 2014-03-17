@@ -6,6 +6,9 @@ use_mount: <%= node['mon-agent']['use_mount'] ? "yes" : "no"  %>
 listen_port: <%= node['mon-agent']['agent_port'] %>
 tags: <%= @setting['tags']%>
 
+dd_url: <%= node['mon-agent']['dd_url'] %>
+api_key: <%= node['mon-agent']['api_key'] %>
+
 <% if !node['mon-agent']['dogstreams'].empty? -%>
 dogstreams: <%= node['mon-agent']['dogstreams'].join(', ') %>
 <% end -%>

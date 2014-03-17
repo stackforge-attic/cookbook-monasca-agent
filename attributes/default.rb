@@ -3,7 +3,7 @@ default['mon-agent']['tags'] = ""
 
 # Datadog defaults
 default['mon-agent']['dd_url'] = "https://app.datadoghq.com"
-default['mon-agent']['api_key'] = nil
+default['mon-agent']['api_key'] = "f218f9096f5a09929f65718d50a817fa"
 default['mon-agent']['collect_ec2_tags'] = "no"
 
 # Repository configuration
