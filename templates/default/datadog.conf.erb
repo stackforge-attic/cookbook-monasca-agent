@@ -1,4 +1,7 @@
 [Main]
+send_to_datadog: <%= node['mon-agent']['send_to_datadog'] %>
+dd_url: <%= node['mon-agent']['dd_url'] %>
+api_key: <%= node['mon-agent']['api_key'] %>
 debug_mode: <%= node['mon-agent']['debug'] %>
 check_freq: <%= node['mon-agent']['check_freq'] %>
 hostname: <%= node.name %>
@@ -12,19 +15,15 @@ api_key: <%= node['mon-agent']['api_key'] %>
 <% if !node['mon-agent']['dogstreams'].empty? -%>
 dogstreams: <%= node['mon-agent']['dogstreams'].join(', ') %>
 <% end -%>
-
 <% if node['mon-agent']['graphite'] -%>
 graphite_listen_port: <%= node['mon-agent']['graphite_port'] %>
 <% end -%>
-
 <% if node['mon-agent']['dogstatsd'] -%>
 # ========================================================================== #
 # DogStatsd configuration                                                    #
 # ========================================================================== #
-
 # DogStatsd is a small server that aggregates your custom app metrics. For
 # usage information, check out http://docs.datadoghq.com
-
 #  Make sure your client is sending to the same port.
 dogstatsd_port : <%= node['mon-agent']['dogstatsd_port'] %>
 
@@ -55,6 +54,7 @@ syslog_port: <%= node['mon-agent']['syslog']['port'] %>
 # Mon-API Configuration
 # ========================================================================== #
 
+send_to_mon_api: <%= @setting['send_to_mon_api']%>
 mon_api_url: <%= @setting['api']['mon_api_url']%>
 mon_api_project_id: <%= @setting['api']['mon_api_project_id'] %>
 mon_api_username: <%= @setting['api']['mon_api_username'] %>
@@ -62,3 +62,7 @@ mon_api_password: <%= @setting['api']['mon_api_password'] %>
 use_keystone: <%= @setting['api']['use_keystone'] %>
 keystone_url: <%= @setting['api']['keystone_url'] %>
 aggregate_metrics: <%= @setting['api']['aggregate_metrics'] %>
+metric_name_map:
+  <% @setting['metric_name_map'].each_pair do |dd_name, mon_name| %>
+     <%= dd_name %>: <%=mon_name %>
+  <% end %>
