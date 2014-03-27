@@ -46,3 +46,6 @@ template "/etc/dd-agent/datadog.conf" do
   )
   notifies :restart, "service[mon-agent]"
 end
+
+include_recipe 'mon_agent::plugin_cfg'
+
