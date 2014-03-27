@@ -1,18 +1,11 @@
-# Place your API Key here, or set it on the role/environment/node
-# The Datadog api key to associate your agent's data with your organization.
-# Can be found here:
-# https://app.datadoghq.com/account/settings
-default['mon-agent']['api_key'] = nil
-
-# Create an application key on the Account Settings page
-default['mon-agent']['application_key'] = nil
-
-# Don't change these
-# The host of the Datadog intake server to send agent data to
-default['mon-agent']['url'] = "https://app.datadoghq.com"
-
 # Add tags as override attributes in your role
 default['mon-agent']['tags'] = ""
+
+# Datadog defaults
+default['mon-agent']['send_to_datadog'] = "no"
+default['mon-agent']['dd_url'] = "https://app.datadoghq.com"
+default['mon-agent']['api_key'] = ""
+default['mon-agent']['collect_ec2_tags'] = "no"
 
 # Repository configuration
 default['mon-agent']['installrepo'] = true
@@ -21,17 +14,6 @@ default['mon-agent']['yumrepo'] = "http://yum.datadoghq.com/rpm"
 
 # Agent Version
 default['mon-agent']['agent_version'] = nil
-
-# Set to true to always install datadog-agent-base (usually only installed on
-# systems with a version of Python lower than 2.6) instead of datadog-agent
-begin
-  default['mon-agent']['install_base'] = Gem::Version.new(node['languages']['python']['version']) < Gem::Version.new('2.6.0')
-rescue NoMethodError # nodes['languages']['python'] == nil
-  Chef::Log.warn 'no version of python found'
-end
-
-# Chef handler version
-default['mon-agent']['chef_handler_version'] = nil
 
 # Boolean to enable debug_mode, which outputs massive amounts of log messages
 # to the /tmp/ directory.
@@ -65,10 +47,13 @@ default['mon-agent']['syslog']['udp'] = false
 default['mon-agent']['syslog']['host'] = nil
 default['mon-agent']['syslog']['port'] = nil
 
-# For service-specific configuration, use the integration recipes included
-# in this cookbook, and apply them to the appropirate node's run list.
-# The HP MaaS username, password and project ID
-default['mon-agent']['mon_api_region'] = nil
+default['mon-agent']['mon_api_url'] = nil
 default['mon-agent']['mon_api_project_id'] = nil
 default['mon-agent']['mon_api_username'] = nil
 default['mon-agent']['mon_api_password'] = nil
+default['mon-agent']['use_keystone'] = nil
+default['mon-agent']['keystone_url'] = nil
+default['mon-agent']['aggregate_metrics'] = nil
+node.default['mon_agent']['group'] = "root"
+node.default['mon_agent']['owner'] = "mon-agent"
+node.default['mon_agent']['data_bag'] = "mon_agent"
