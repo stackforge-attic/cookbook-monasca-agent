@@ -10,7 +10,7 @@ service "mon-agent" do
 end
 
 # Load nagios-plugins package if it's needed
-if node[:agent].has_key?(:nagios_wrapper)
+if node[:mon_agent][:plugin].has_key?(:nagios_wrapper)
   ["nagios-plugins"].each do |pkg|
     package pkg do
       action :install
@@ -27,8 +27,9 @@ directory "/etc/dd-agent/conf.d" do
   mode 0755
 end
 
-# Configures the plugin yaml files based on node[:agent] attributes
-node[:agent].each_key do |plugin|
+# Configures the plugin yaml files based on node[:mon_agent][:plugin]
+# attributes
+node[:mon_agent][:plugin].each_key do |plugin|
   template "/etc/dd-agent/conf.d/#{plugin}.yaml" do
     source "plugin_yaml.erb"
     action :create
@@ -36,8 +37,8 @@ node[:agent].each_key do |plugin|
     group node['mon_agent']['group']
     mode 0644
     variables(
-      :init_config => node[:agent][plugin][:init_config],
-      :instances => node[:agent][plugin][:instances]
+      :init_config => node[:mon_agent][:plugin][plugin][:init_config],
+      :instances => node[:mon_agent][:plugin][plugin][:instances]
     )
     notifies :restart, "service[mon-agent]"
   end

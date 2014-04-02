@@ -10,7 +10,7 @@ init_config:
 <% end %>
 
 instances:
-<% @instances.each do |inst| %>
+<% @instances.each do |inst_key,inst| %>
   <% new_item = TRUE %>
   <% inst.each do |key, value| %>
     <% if new_item %>
@@ -30,4 +30,3 @@ instances:
   <% end %>
 
 <% end %>
-
