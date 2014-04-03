@@ -1,59 +1,59 @@
 # Add tags as override attributes in your role
-default['mon-agent']['tags'] = ""
+default['jahmon-agent']['tags'] = ""
 
 # Datadog defaults
-default['mon-agent']['send_to_datadog'] = "no"
-default['mon-agent']['dd_url'] = "https://app.datadoghq.com"
-default['mon-agent']['api_key'] = ""
-default['mon-agent']['collect_ec2_tags'] = "no"
+default['jahmon-agent']['send_to_datadog'] = "no"
+default['jahmon-agent']['dd_url'] = "https://app.datadoghq.com"
+default['jahmon-agent']['api_key'] = ""
+default['jahmon-agent']['collect_ec2_tags'] = "no"
 
 # Repository configuration
-default['mon-agent']['installrepo'] = true
-default['mon-agent']['aptrepo'] = "http://apt.datadoghq.com"
-default['mon-agent']['yumrepo'] = "http://yum.datadoghq.com/rpm"
+default['jahmon-agent']['installrepo'] = true
+default['jahmon-agent']['aptrepo'] = "http://apt.datadoghq.com"
+default['jahmon-agent']['yumrepo'] = "http://yum.datadoghq.com/rpm"
 
 # Agent Version
-default['mon-agent']['agent_version'] = nil
+default['jahmon-agent']['agent_version'] = nil
 
 # Boolean to enable debug_mode, which outputs massive amounts of log messages
 # to the /tmp/ directory.
-default['mon-agent']['debug'] = false
+default['jahmon-agent']['debug'] = false
 
 # How often you want the agent to collect data, in seconds. Any value between
 # 15 and 60 is a reasonable interval.
-default['mon-agent']['check_freq'] = 15
+default['jahmon-agent']['check_freq'] = 15
 
 # If running on ec2, if true, use the instance-id as the host identifier
 # rather than the hostname for the agent or nodename for chef-handler.
-default['mon-agent']['use_ec2_instance_id'] = false
+default['jahmon-agent']['use_ec2_instance_id'] = false
 
 # Use mount points instead of volumes to track disk and fs metrics
-default['mon-agent']['use_mount'] = false
+default['jahmon-agent']['use_mount'] = false
 
 # Change port the agent is listening to
-default['mon-agent']['agent_port'] = 17123
+default['jahmon-agent']['agent_port'] = 17123
 
 # Start a graphite listener on this port
 # https://github.com/DataDog/dd-agent/wiki/Feeding-Datadog-with-Graphite
-default['mon-agent']['graphite'] = false
-default['mon-agent']['graphite_port'] = 17124
+default['jahmon-agent']['graphite'] = false
+default['jahmon-agent']['graphite_port'] = 17124
 
 # log-parsing configuration
-default['mon-agent']['dogstreams'] = []
+default['jahmon-agent']['dogstreams'] = []
 
 # Logging configuration
-default['mon-agent']['syslog']['active'] = false
-default['mon-agent']['syslog']['udp'] = false
-default['mon-agent']['syslog']['host'] = nil
-default['mon-agent']['syslog']['port'] = nil
+default['jahmon-agent']['syslog']['active'] = false
+default['jahmon-agent']['syslog']['udp'] = false
+default['jahmon-agent']['syslog']['host'] = nil
+default['jahmon-agent']['syslog']['port'] = nil
 
-default['mon-agent']['mon_api_url'] = nil
-default['mon-agent']['mon_api_project_id'] = nil
-default['mon-agent']['mon_api_username'] = nil
-default['mon-agent']['mon_api_password'] = nil
-default['mon-agent']['use_keystone'] = nil
-default['mon-agent']['keystone_url'] = nil
-default['mon-agent']['aggregate_metrics'] = nil
-node.default['mon_agent']['group'] = "root"
-node.default['mon_agent']['owner'] = "mon-agent"
-node.default['mon_agent']['data_bag'] = "mon_agent"
+default['jahmon-agent']['mon_api_url'] = nil
+default['jahmon-agent']['mon_api_project_id'] = nil
+default['jahmon-agent']['mon_api_username'] = nil
+default['jahmon-agent']['mon_api_password'] = nil
+default['jahmon-agent']['use_keystone'] = nil
+default['jahmon-agent']['keystone_url'] = nil
+default['jahmon-agent']['aggregate_metrics'] = nil
+node.default['jahmon_agent']['group'] = "root"
+node.default['jahmon_agent']['owner'] = "jahmon-agent"
+node.default['jahmon_agent']['data_bag'] = "jahmon_agent"

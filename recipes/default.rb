@@ -4,48 +4,48 @@
 #
 
 # Agent configuration
-package 'mon-agent' do
+package 'jahmon-agent' do
   action :purge
 end
 
-package 'mon-agent' do
+package 'jahmon-agent' do
   action :install
 end
 
-cookbook_file '/usr/share/pyshared/monagent/datadog-cert.pem' do
+cookbook_file '/usr/share/datadog/agent/datadog-cert.pem' do
   action :create
-  owner node['mon_agent']['owner']
-  group node['mon_agent']['group']
+  owner node['jahmon_agent']['owner']
+  group node['jahmon_agent']['group']
   mode '644'
   source 'datadog-cert.pem'
 end
 
-directory "/var/log/mon-agent" do
+directory "/var/log/jahmon-agent" do
     recursive true
-    owner node['mon_agent']['owner']
-    group node['mon_agent']['group']
+    owner node['jahmon_agent']['owner']
+    group node['jahmon_agent']['group']
     mode 0777
     action :create
 end
 
-service 'mon-agent' do
+service 'jahmon-agent' do
   action :enable
   provider Chef::Provider::Service::Init::Debian
 end
 
-setting = data_bag_item(node[:mon_agent][:data_bag], 'mon_agent')
+setting = data_bag_item(node[:jahmon_agent][:data_bag], 'jahmon_agent')
 
 template "/etc/dd-agent/datadog.conf" do
   action :create
-  owner node['mon_agent']['owner']
-  group node['mon_agent']['group']
+  owner node['jahmon_agent']['owner']
+  group node['jahmon_agent']['group']
   mode '644'
   source "datadog.conf.erb"
   variables(
     :setting => setting
   )
-  notifies :restart, "service[mon-agent]"
+  notifies :restart, "service[jahmon-agent]"
 end
 
-include_recipe 'mon_agent::plugin_cfg'
+include_recipe 'jahmon_agent::plugin_cfg'
 

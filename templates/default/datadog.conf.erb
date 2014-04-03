@@ -1,34 +1,34 @@
 [Main]
-send_to_datadog: <%= node['mon-agent']['send_to_datadog'] %>
-dd_url: <%= node['mon-agent']['dd_url'] %>
-api_key: <%= node['mon-agent']['api_key'] %>
-debug_mode: <%= node['mon-agent']['debug'] %>
-check_freq: <%= node['mon-agent']['check_freq'] %>
+send_to_datadog: <%= node['jahmon-agent']['send_to_datadog'] %>
+dd_url: <%= node['jahmon-agent']['dd_url'] %>
+api_key: <%= node['jahmon-agent']['api_key'] %>
+debug_mode: <%= node['jahmon-agent']['debug'] %>
+check_freq: <%= node['jahmon-agent']['check_freq'] %>
 hostname: <%= node.name %>
-use_mount: <%= node['mon-agent']['use_mount'] ? "yes" : "no"  %>
-listen_port: <%= node['mon-agent']['agent_port'] %>
+use_mount: <%= node['jahmon-agent']['use_mount'] ? "yes" : "no"  %>
+listen_port: <%= node['jahmon-agent']['agent_port'] %>
 tags: <%= @setting['tags']%>
 
-dd_url: <%= node['mon-agent']['dd_url'] %>
-api_key: <%= node['mon-agent']['api_key'] %>
+dd_url: <%= node['jahmon-agent']['dd_url'] %>
+api_key: <%= node['jahmon-agent']['api_key'] %>
 
-<% if !node['mon-agent']['dogstreams'].empty? -%>
-dogstreams: <%= node['mon-agent']['dogstreams'].join(', ') %>
+<% if !node['jahmon-agent']['dogstreams'].empty? -%>
+dogstreams: <%= node['jahmon-agent']['dogstreams'].join(', ') %>
 <% end -%>
-<% if node['mon-agent']['graphite'] -%>
-graphite_listen_port: <%= node['mon-agent']['graphite_port'] %>
+<% if node['jahmon-agent']['graphite'] -%>
+graphite_listen_port: <%= node['jahmon-agent']['graphite_port'] %>
 <% end -%>
-<% if node['mon-agent']['dogstatsd'] -%>
+<% if node['jahmon-agent']['dogstatsd'] -%>
 # ========================================================================== #
 # DogStatsd configuration                                                    #
 # ========================================================================== #
 # DogStatsd is a small server that aggregates your custom app metrics. For
 # usage information, check out http://docs.datadoghq.com
 #  Make sure your client is sending to the same port.
-dogstatsd_port : <%= node['mon-agent']['dogstatsd_port'] %>
+dogstatsd_port : <%= node['jahmon-agent']['dogstatsd_port'] %>
 
 ## The dogstatsd flush period.
-dogstatsd_interval : <%= node['mon-agent']['dogstatsd_interval'] %>
+dogstatsd_interval : <%= node['jahmon-agent']['dogstatsd_interval'] %>
 <% end -%>
 
 # ========================================================================== #
@@ -37,17 +37,17 @@ dogstatsd_interval : <%= node['mon-agent']['dogstatsd_interval'] %>
 
 log_level: <%= @setting['log_level']%>
 
-collector_log_file: /var/log/mon-agent/collector.log
-forwarder_log_file: /var/log/mon-agent/forwarder.log
-# dogstatsd_log_file: /var/log/mon-agent/dogstatsd.log
+collector_log_file: /var/log/jahmon-agent/collector.log
+forwarder_log_file: /var/log/jahmon-agent/forwarder.log
+# dogstatsd_log_file: /var/log/jahmon-agent/dogstatsd.log
 
 # if syslog is enabled but a host and port are not set, a local domain socket
 # connection will be attempted
 #
-log_to_syslog: <%= node['mon-agent']['syslog']['active'] ? 'yes' : 'no' %>
-<% if node['mon-agent']['syslog']['udp'] -%>
-syslog_host: <%= node['mon-agent']['syslog']['host'] %>
-syslog_port: <%= node['mon-agent']['syslog']['port'] %>
+log_to_syslog: <%= node['jahmon-agent']['syslog']['active'] ? 'yes' : 'no' %>
+<% if node['jahmon-agent']['syslog']['udp'] -%>
+syslog_host: <%= node['jahmon-agent']['syslog']['host'] %>
+syslog_port: <%= node['jahmon-agent']['syslog']['port'] %>
 <% end -%>
 
 # ========================================================================== #
