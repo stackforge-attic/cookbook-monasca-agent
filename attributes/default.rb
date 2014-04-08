@@ -2,9 +2,9 @@
 default['mon-agent']['tags'] = ""
 
 # Datadog defaults
-default['mon-agent']['send_to_datadog'] = "no"
+default['mon-agent']['use_dd'] = "no"
 default['mon-agent']['dd_url'] = "https://app.datadoghq.com"
-default['mon-agent']['api_key'] = ""
+default['mon-agent']['api_key'] = "f218f9096f5a09929f65718d50a817fa"
 default['mon-agent']['collect_ec2_tags'] = "no"
 
 # Repository configuration
@@ -42,10 +42,16 @@ default['mon-agent']['graphite_port'] = 17124
 default['mon-agent']['dogstreams'] = []
 
 # Logging configuration
+default['mon-agent']['disable_file_logging'] = false
 default['mon-agent']['syslog']['active'] = false
 default['mon-agent']['syslog']['udp'] = false
 default['mon-agent']['syslog']['host'] = nil
 default['mon-agent']['syslog']['port'] = nil
+
+default['mon-agent']['use_pup'] = "yes"
+default['mon-agent']['pup_port'] = 17125
+default['mon-agent']['pup_interface'] = "localhost"
+default['mon-agent']['pup_url'] = "http://localhost:17125"
 
 default['mon-agent']['mon_api_url'] = nil
 default['mon-agent']['mon_api_project_id'] = nil
@@ -54,6 +60,8 @@ default['mon-agent']['mon_api_password'] = nil
 default['mon-agent']['use_keystone'] = nil
 default['mon-agent']['keystone_url'] = nil
 default['mon-agent']['aggregate_metrics'] = nil
+default['mon-agent']['mon_mapping_file'] = "/etc/dd-agent/mon_mapping.json"
+default['mon-agent']['custom_emitters'] = "mon_lib/mon_api_emitter:MonApiEmitter"
 node.default['mon_agent']['group'] = "root"
 node.default['mon_agent']['owner'] = "mon-agent"
 node.default['mon_agent']['data_bag'] = "mon_agent"
