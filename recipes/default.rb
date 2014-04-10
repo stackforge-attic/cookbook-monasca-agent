@@ -8,14 +8,6 @@ package 'mon-agent' do
   action :upgrade
 end
 
-cookbook_file '/usr/share/datadog/agent/datadog-cert.pem' do
-  action :create
-  owner node['mon_agent']['owner']
-  group node['mon_agent']['group']
-  mode '644'
-  source 'datadog-cert.pem'
-end
-
 directory "/var/log/mon-agent" do
     recursive true
     owner node['mon_agent']['owner']
