@@ -5,11 +5,7 @@
 
 # Agent configuration
 package 'mon-agent' do
-  action :purge
-end
-
-package 'mon-agent' do
-  action :install
+  action :upgrade
 end
 
 cookbook_file '/usr/share/datadog/agent/datadog-cert.pem' do
