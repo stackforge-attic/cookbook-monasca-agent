@@ -38,6 +38,12 @@ default['mon-agent']['agent_port'] = 17123
 default['mon-agent']['graphite'] = false
 default['mon-agent']['graphite_port'] = 17124
 
+# Dogstatsd configuration
+default['mon-agent']['dogstatsd'] = false
+default['mon-agent']['dogstatsd_port'] = 8125
+default['mon-agent']['dogstatsd_interval'] = 30
+default['mon-agent']['dogstatsd_normalize'] = "yes"
+
 # log-parsing configuration
 default['mon-agent']['dogstreams'] = []
 
