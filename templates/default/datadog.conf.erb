@@ -8,7 +8,8 @@ check_freq: <%= node['mon-agent']['check_freq'] %>
 hostname: <%= node.name %>
 use_mount: <%= node['mon-agent']['use_mount'] ? "yes" : "no"  %>
 listen_port: <%= node['mon-agent']['agent_port'] %>
-tags: <%= @setting['tags']%>
+#tags: <%= @setting['tags']%>
+tags: <%= node['mon-agent']['tags'] %>
 
 
 <% if !node['mon-agent']['dogstreams'].empty? -%>
