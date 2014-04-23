@@ -8,8 +8,6 @@ check_freq: <%= node['mon-agent']['check_freq'] %>
 hostname: <%= node.name %>
 use_mount: <%= node['mon-agent']['use_mount'] ? "yes" : "no"  %>
 listen_port: <%= node['mon-agent']['agent_port'] %>
-#tags: <%= @setting['tags']%>
-tags: <%= node['mon-agent']['tags'] %>
 
 
 <% if !node['mon-agent']['dogstreams'].empty? -%>
@@ -18,6 +16,7 @@ dogstreams: <%= node['mon-agent']['dogstreams'].join(', ') %>
 <% if node['mon-agent']['graphite'] -%>
 graphite_listen_port: <%= node['mon-agent']['graphite_port'] %>
 <% end -%>
+
 <% if node['mon-agent']['dogstatsd'] -%>
 # ========================================================================== #
 # DogStatsd configuration                                                    #
@@ -108,6 +107,11 @@ aggregate_metrics: <%= @setting['api']['aggregate_metrics'] %>
 
 # Mapping file for monitoring metrics
 mon_mapping_file: <%= node['mon-agent']['mon_mapping_file'] %>
+
+# Optional dimensions to be sent with every metric from this node
+# They should be in the format name:value and seperated by a comma
+# Example (dimensions: Environment:Test, Origin:Mini-Mon, ...)
+dimensions: <%= @setting['dimensions']%>
 
 # ========================================================================== #
 # Custom Emitters                                                            #
