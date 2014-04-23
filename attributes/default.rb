@@ -66,6 +66,7 @@ default['mon-agent']['mon_api_password'] = nil
 default['mon-agent']['use_keystone'] = nil
 default['mon-agent']['keystone_url'] = nil
 default['mon-agent']['aggregate_metrics'] = nil
+default['mon-agent']['dimensions'] = nil
 default['mon-agent']['mon_mapping_file'] = "/etc/dd-agent/mon_mapping.json"
 default['mon-agent']['custom_emitters'] = "mon_lib/mon_api_emitter:MonApiEmitter"
 node.default['mon_agent']['group'] = "root"
