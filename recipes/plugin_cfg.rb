@@ -10,9 +10,9 @@ service "mon-agent" do
 end
 
 # Load nagios-plugins package if it's needed
-package 'nagios-plugins' do
+package 'nagios-plugins-basic' do
   action :install
-  only_if node[:mon_agent][:plugin].has_key?(:nagios_wrapper)
+  only_if { node[:mon_agent][:plugin].has_key?(:nagios_wrapper) }
 end
 
 # Make sure the datadog conf.d directory exists
