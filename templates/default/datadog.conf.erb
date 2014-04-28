@@ -111,7 +111,20 @@ mon_mapping_file: <%= node['mon-agent']['mon_mapping_file'] %>
 # Optional dimensions to be sent with every metric from this node
 # They should be in the format name:value and seperated by a comma
 # Example (dimensions: Environment:Test, Origin:Mini-Mon, ...)
-dimensions: <%= @setting['dimensions']%>
+<%
+# Dimensions may exist globally in data bags, or per-node in attributes.
+# Combine as needed into a single comma-delimited string.
+if @setting['dimensions'].to_s != '' and
+ node['mon-agent']['dimensions'].to_s != ''
+  dimensions = [@setting['dimensions'],
+    node['mon-agent']['dimensions']].join(', ')
+elsif @setting['dimensions'].to_s != ''
+  dimensions = @setting['dimensions']
+elsif node['mon-agent']['dimensions'].to_s != ''
+  dimensions = node['mon-agent']['dimensions']
+end
+-%>
+dimensions: <%= dimensions -%>
 
 # ========================================================================== #
 # Custom Emitters                                                            #
