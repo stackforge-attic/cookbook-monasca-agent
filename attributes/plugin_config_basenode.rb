@@ -50,14 +50,14 @@ node.default[:mon_agent][:plugin][:mon_http_check][:instances][:monapi_health] =
 }
 
 # mon_nagios_wrapper checks: For demo, everyone can check disk
-
-node.default[:mon_agent][:plugin][:mon_nagios_wrapper][:init_config] = {
-  :check_path => "/usr/lib/nagios/plugins:/usr/local/bin/nagios"
-}
-
-node.default[:mon_agent][:plugin][:mon_nagios_wrapper][:instances][:check_disk] = {
-  :service_name => "disk",
-  :check_command => "check_disk -w 15\\% -c 5\\% -A -i /srv/node",
-  :check_interval => 300
-}
+#
+#node.default[:mon_agent][:plugin][:mon_nagios_wrapper][:init_config] = {
+#  :check_path => "/usr/lib/nagios/plugins:/usr/local/bin/nagios"
+#}
+#
+#node.default[:mon_agent][:plugin][:mon_nagios_wrapper][:instances][:check_disk] = {
+#  :service_name => "disk",
+#  :check_command => "check_disk -w 15\\% -c 5\\% -A -i /srv/node",
+#  :check_interval => 300
+#}
 
