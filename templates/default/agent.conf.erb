@@ -84,15 +84,3 @@ syslog_host: <%= node['mon-agent']['syslog']['host'] %>
 syslog_port: <%= node['mon-agent']['syslog']['port'] %>
 <% end -%>
 disable_file_logging: <%= node['mon-agent']['disable_file_logging'] %>
-
-# ========================================================================== #
-# Custom Emitters                                                            #
-# ========================================================================== #
-
-# Comma-separated list of emitters to be used in addition to the standard one
-#
-# Expected to be passed as a comma-separated list of colon-delimited
-# name/object pairs.
-#
-custom_emitters: <%= node['mon-agent']['custom_emitters'] %>
-

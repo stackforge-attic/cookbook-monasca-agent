@@ -44,7 +44,6 @@ default['mon-agent']['keystone_url'] = nil
 default['mon-agent']['aggregate_metrics'] = nil
 default['mon-agent']['dimensions'] = nil
 default['mon-agent']['mapping_file'] = "/usr/share/mon/agent/api/mapping.json"
-default['mon-agent']['custom_emitters'] = ""
 
 # daemon settings
 default['mon_agent']['group'] = "root"
