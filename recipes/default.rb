@@ -23,12 +23,12 @@ end
 
 setting = data_bag_item(node[:mon_agent][:data_bag], 'mon_agent')
 
-template "/etc/dd-agent/datadog.conf" do
+template "/etc/mon-agent/agent.conf" do
   action :create
   owner node['mon_agent']['owner']
   group node['mon_agent']['group']
   mode '644'
-  source "datadog.conf.erb"
+  source "agent.conf.erb"
   variables(
     :setting => setting
   )
