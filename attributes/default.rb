@@ -1,6 +1,3 @@
-# Add tags as override attributes in your role
-default['mon-agent']['tags'] = ""
-
 # Agent Version
 default['mon-agent']['agent_version'] = nil
 

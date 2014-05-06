@@ -17,9 +17,6 @@ use_keystone: <%= @setting['api']['use_keystone'] %>
 # Keystone API URL: URL for the Keystone server to use
 # Example: https://region-a.geo-1.identity.hpcloudsvc.com:35357/v3/auth/tokens
 keystone_url: <%= @setting['api']['keystone_url'] %>
-# Aggregate Metrics?: Send single message or message for each metric
-# True or False
-aggregate_metrics: <%= @setting['api']['aggregate_metrics'] %>
 
 # Mapping file for monitoring metrics
 mapping_file: <%= node['mon-agent']['mapping_file'] %>
