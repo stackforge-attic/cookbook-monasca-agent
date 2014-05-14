@@ -1,5 +1,5 @@
 # Pre-reqs that when installed by os package avoid compilation during easy_install
-%w[python-pymongo python-psutil supervisor].each do |pkg_name|
+%w[python-pymongo python-psutil supervisor python-yaml].each do |pkg_name|
   package pkg_name do
     action :install
   end
