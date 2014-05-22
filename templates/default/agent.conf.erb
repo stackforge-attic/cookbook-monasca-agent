@@ -31,7 +31,7 @@ listen_port: <%= node['mon-agent']['agent_port'] %>
 
 # Optional dimensions to be sent with every metric from this node
 # They should be in the format name:value and seperated by a comma
-# Example (dimensions: Environment:Test, Origin:Mini-Mon, ...)
+# Example (dimensions: service:nova, group:group_a, ...)
 <%
 # Dimensions may exist globally in data bags, or per-node in attributes.
 # Combine as needed into a single comma-delimited string.
@@ -51,25 +51,24 @@ dimensions: <%= dimensions -%>
 dogstreams: <%= node['mon-agent']['dogstreams'].join(', ') %>
 <% end -%>
 
-<% if node['mon-agent']['dogstatsd'] -%>
+<% if node['mon-agent']['monstatsd'] -%>
 # ========================================================================== #
-# DogStatsd configuration                                                    #
+# MonStatsd configuration                                                    #
 # ========================================================================== #
-# DogStatsd is a small server that aggregates your custom app metrics. For
-# usage information, check out http://docs.datadoghq.com
+# MonStatsd is a small server that aggregates your custom app metrics.
 #  Make sure your client is sending to the same port.
-dogstatsd_port : <%= node['mon-agent']['dogstatsd_port'] %>
+monstatsd_port : <%= node['mon-agent']['monstatsd_port'] %>
 
-## The dogstatsd flush period.
-dogstatsd_interval : <%= node['mon-agent']['dogstatsd_interval'] %>
+## The monstatsd flush period.
+monstatsd_interval : <%= node['mon-agent']['monstatsd_interval'] %>
 
 ## If 'yes', counters and rates will be normalized to 1 second (that is divided
-## by the dogstatsd_interval) before being sent to the server. Defaults to 'yes'
-dogstatsd_normalize : <%= node['mon-agent']['dogstatsd_normalize'] %>
+## by the monstatsd_interval) before being sent to the server. Defaults to 'yes'
+monstatsd_normalize : <%= node['mon-agent']['monstatsd_normalize'] %>
 
-# If you want to forward every packet received by the dogstatsd server
+# If you want to forward every packet received by the monstatsd server
 # to another statsd server, uncomment these lines.
-# WARNING: Make sure that forwarded packets are regular statsd packets and not "dogstatsd" packets,
+# WARNING: Make sure that forwarded packets are regular statsd packets and not "momonnstatsd" packets,
 # as your other statsd server might not be able to handle them.
 # statsd_forward_host: address_of_own_statsd_server
 # statsd_forward_port: 8125
@@ -83,7 +82,7 @@ log_level: <%= @setting['log_level']%>
 
 collector_log_file: /var/log/mon-agent/collector.log
 forwarder_log_file: /var/log/mon-agent/forwarder.log
-dogstatsd_log_file: /var/log/mon-agent/dogstatsd.log
+monstatsd_log_file: /var/log/mon-agent/monstatsd.log
 
 # if syslog is enabled but a host and port are not set, a local domain socket
 # connection will be attempted

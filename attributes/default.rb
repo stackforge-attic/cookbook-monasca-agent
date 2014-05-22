@@ -16,10 +16,10 @@ default['mon-agent']['use_mount'] = false
 default['mon-agent']['agent_port'] = 17123
 
 # Dogstatsd configuration
-default['mon-agent']['dogstatsd'] = false
-default['mon-agent']['dogstatsd_port'] = 8125
-default['mon-agent']['dogstatsd_interval'] = 30
-default['mon-agent']['dogstatsd_normalize'] = "yes"
+default['mon-agent']['monstatsd'] = false
+default['mon-agent']['monstatsd_port'] = 8125
+default['mon-agent']['monstatsd_interval'] = 30
+default['mon-agent']['monstatsd_normalize'] = "yes"
 
 # log-parsing configuration
 default['mon-agent']['dogstreams'] = []
