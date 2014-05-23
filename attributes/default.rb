@@ -38,9 +38,7 @@ default['mon-agent']['Api']['username'] = nil
 default['mon-agent']['Api']['password'] = nil
 default['mon-agent']['use_keystone'] = nil
 default['mon-agent']['keystone_url'] = nil
-default['mon-agent']['aggregate_metrics'] = nil
 default['mon-agent']['dimensions'] = nil
-default['mon-agent']['mapping_file'] = "/usr/share/mon/agent/api/mapping.json"
 
 # daemon settings
 default['mon_agent']['group'] = "root"

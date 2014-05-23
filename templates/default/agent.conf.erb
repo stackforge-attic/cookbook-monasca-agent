@@ -18,9 +18,6 @@ use_keystone: <%= @setting['api']['use_keystone'] %>
 # Example: https://region-a.geo-1.identity.hpcloudsvc.com:35357/v3/auth/tokens
 keystone_url: <%= @setting['api']['keystone_url'] %>
 
-# Mapping file for monitoring metrics
-mapping_file: <%= node['mon-agent']['mapping_file'] %>
-
 
 [Main]
 debug_mode: <%= node['mon-agent']['debug'] %>
