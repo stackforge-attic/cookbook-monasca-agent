@@ -33,23 +33,23 @@ directory and init script, and populating the configuration files with the
 contents of `data_bag_item(node[:mon_agent][:data_bag], 'mon_agent')`
 
 ## plugin_cfg
-mon-agent plugins are configured in /etc/mon-agent/conf.d/ as YAML files ending
+mon-agent plugins are configured in `/etc/mon-agent/conf.d/` as YAML files ending
 in .yaml which are created by this recipe.  The Agent will walk through these
 files when the Collector (`/usr/local/bin/mon-collector`) starts.  The name of
 the file must match a Python plugin in `/etc/mon-agent/checks.d/` or
 `/usr/local/lib/python2.7/dist-packages/monagent/collector/checks_d/`
 
-| `conf.d/` file:   | `process.yaml`                                |
-| `checks_d/` file: | `process.py`                                  |
-| data bag item:    | `node.default[:mon_agent][:plugin][:process]` |
+- `conf.d/` file:    `process.yaml`                                
+- `checks_d/` file:  `process.py`                                  
+- data bag item:     `node.default[:mon_agent][:plugin][:process]` 
 
 The .yaml files are comprised of two different sections, `init_config`
 containing global configuration parameters, and 'instances' containing one or
 more stanzas containing details about the particular check to run.  These are
 defined in
-    node.default[:mon_agent][:plugin][:process][:init_config]
+    `node.default[:mon_agent][:plugin][:process][:init_config]`
 and
-    node.default[:mon_agent][:plugin][:process][:instances]
+    `node.default[:mon_agent][:plugin][:process][:instances]`
 respectively.
 
 The `nagios_wrapper` is a special case in the `plugin_cfg` recipe in that
