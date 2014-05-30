@@ -22,7 +22,7 @@ end
       recursive true
       owner node['mon_agent']['owner']
       group node['mon_agent']['group']
-      mode 0777
+      mode 0755
       action :create
   end
 end
