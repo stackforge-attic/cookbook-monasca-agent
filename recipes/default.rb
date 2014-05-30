@@ -1,22 +1,14 @@
-# Pre-reqs that when installed by os package avoid compilation during easy_install
+include_recipe "python"
+
+# Pre-reqs that when installed by os package avoid compilation by pip
 %w[python-psutil python-pymongo python-yaml supervisor sysstat].each do |pkg_name|
   package pkg_name do
     action :install
   end
 end
 
-# Agent setup, using easy_install_package results in thing not in /usr/local so I use pip
-execute 'pip upgrade' do
-  command '/usr/bin/pip install --upgrade pip'
-  action :nothing
-end
-package 'python-pip' do
-  action:install
-  notifies :run, "execute[pip upgrade]", :immediately
-end
-# Todo this runs every chef run at this point, fix it
-execute '/usr/local/bin/pip install mon-agent' do
-  action :run
+python_pip 'mon-agent' do
+  action :upgrade
 end
 
 user node['mon_agent']['owner'] do
