@@ -5,6 +5,10 @@ default['mon-agent']['agent_version'] = nil
 # to the /tmp/ directory.
 default['mon-agent']['debug'] = false
 
+# Global dimensions, to be included in every metric.  Use comma-delimited
+# name:value pairs, like "name1:value1, name2:value2"
+default['mon-agent']['dimensions'] = nil
+
 # How often you want the agent to collect data, in seconds. Any value between
 # 15 and 60 is a reasonable interval.
 default['mon-agent']['check_freq'] = 15
@@ -15,7 +19,7 @@ default['mon-agent']['use_mount'] = false
 # Change port the agent is listening to
 default['mon-agent']['agent_port'] = 17123
 
-# Dogstatsd configuration
+# Monstatsd configuration
 default['mon-agent']['monstatsd'] = false
 default['mon-agent']['monstatsd_port'] = 8125
 default['mon-agent']['monstatsd_interval'] = 30
@@ -30,15 +34,6 @@ default['mon-agent']['syslog']['active'] = false
 default['mon-agent']['syslog']['udp'] = false
 default['mon-agent']['syslog']['host'] = nil
 default['mon-agent']['syslog']['port'] = nil
-
-#Api settings
-default['mon-agent']['Api']['url'] = nil
-default['mon-agent']['Api']['project_id'] = nil
-default['mon-agent']['Api']['username'] = nil
-default['mon-agent']['Api']['password'] = nil
-default['mon-agent']['use_keystone'] = nil
-default['mon-agent']['keystone_url'] = nil
-default['mon-agent']['dimensions'] = nil
 
 # daemon settings
 default['mon_agent']['group'] = "root"
