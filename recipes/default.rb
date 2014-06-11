@@ -14,7 +14,7 @@ execute 'mon-setup' do
 end
 
 python_pip 'mon-agent' do
-  action :upgrade
+  action :install
   notifies :run, "execute[mon-setup]"
 end
 
