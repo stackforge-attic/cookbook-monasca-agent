@@ -16,6 +16,7 @@ and logging levels.
       "keystone_url": "http://192.168.10.4:5000/v2.0",
       "username": "joe_user",
       "password": "correcthorsebatterystaple",
+      "project_name": "worldpeace",
       "mon_api_url": "http://192.168.10.4:8080/v2.0",
       "service": "mini-mon"
     }
