@@ -15,18 +15,12 @@ package 'nagios-plugins-basic' do
   only_if { node[:mon_agent][:plugin].has_key?(:nagios_wrapper) }
 end
 
-# Make sure the datadog conf.d directory exists
-directory "/etc/mon-agent/conf.d" do
-  recursive true
-  action :create
-  owner node['mon_agent']['owner']
-  group node['mon_agent']['group']
-  mode 0755
-end
-
 # Configures the plugin yaml files based on node[:mon_agent][:plugin]
 # attributes
 node[:mon_agent][:plugin].each_key do |plugin|
+  if not node[:mon_agent][:plugin][plugin].has_key?(:init_config):
+    node[:mon_agent][:plugin][plugin][:init_config] = {}
+  end
   template "/etc/mon-agent/conf.d/#{plugin}.yaml" do
     source "plugin_yaml.erb"
     action :create
