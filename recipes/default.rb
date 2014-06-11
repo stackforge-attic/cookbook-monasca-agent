@@ -16,7 +16,7 @@ end
 settings = data_bag_item(node[:mon_agent][:data_bag], 'mon_agent')
 execute 'mon-setup' do
   action :run
-  cmd "/usr/local/bin/mon-setup -u #{settings['username']} -p #{settings['password']} -s #{settings['service']} --keystone_url #{settings['keystone_url']} --project_name #{settings['project_name']} --mon_url #{settings['mon_api_url']}"
+  command "/usr/local/bin/mon-setup -u #{settings['username']} -p #{settings['password']} -s #{settings['service']} --keystone_url #{settings['keystone_url']} --project_name #{settings['project_name']} --mon_url #{settings['mon_api_url']}"
 end
 
 include_recipe 'mon_agent::plugin_cfg'
