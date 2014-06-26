@@ -9,6 +9,7 @@ node.default[:mon_agent][:plugin][:host_alive][:init_config] = {
 }
 
 node.default[:mon_agent][:plugin][:host_alive][:instances][:api_with_ssh] = {
+  :name => "api_ssh_port"
   :host_name => "192.168.10.4",
   :alive_test => "ssh"
 }
@@ -56,6 +57,7 @@ node.default[:mon_agent][:plugin][:http_check][:instances][:monapi_health] = {
 #}
 #
 #node.default[:mon_agent][:plugin][:nagios_wrapper][:instances][:check_disk] = {
+#  :name => "local_disk"
 #  :service_name => "disk",
 #  :check_command => "check_disk -w 15\\% -c 5\\% -A -i /srv/node",
 #  :check_interval => 300
