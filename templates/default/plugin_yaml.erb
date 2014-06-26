@@ -15,14 +15,18 @@ instances:
   <% inst.sort.each do |key, value| %>
     <% if new_item %>
       <% if value.is_a?(Array) %>
-<%= "  - #{key}: "%> [<%= value.sort.map { |val| %Q/"#{val}"/ }.join(', ') %>]
+<%= "  - #{key}: "%>[<%= value.sort.map { |val| %Q/"#{val}"/ }.join(', ') %>]
+      <% elsif value.is_a?(Hash) %>
+<%= "  - #{key}: "%><%= value.sort.map { |hkey, hval| %Q/#{hkey}:#{hval}/ }.join(', ') %>
       <% else %>
 <%= "  - #{key}: #{value}" %>
       <% end %>
       <% new_item = FALSE %>
     <% else %>
       <% if value.is_a?(Array) %>
-<%= "    #{key}: "%> [<%= value.sort.map { |val| %Q/"#{val}"/ }.join(', ') %>]
+<%= "    #{key}: "%>[<%= value.sort.map { |val| %Q/"#{val}"/ }.join(', ') %>]
+      <% elsif value.is_a?(Hash) %>
+<%= "    #{key}: "%>[<%= value.sort.map { |hkey, hval| %Q/#{hkey}:#{hval}/ }.join(', ') %>
       <% else %>
 <%= "    #{key}: #{value}" %>
       <% end %>

@@ -12,25 +12,19 @@ and logging levels.
 
 ## Example
     {
-      "id" : "mon_agent",
-      "dimensions" : "service:mini-mon, group:group_a",
-      "log_level" : "DEBUG",
-      "api" : {
-        "mon_api_url" : "http://192.168.10.4:8080/v2.0",
-        "mon_api_username" : "joe_user",
-        "mon_api_password" : "correcthorsebatterystaple",
-        "mon_api_project_id" : "12345678901234",
-        "keystone_url" : "http://192.168.10.4:5000/v2.0"
-      }
+      "id": "mon_agent",
+      "keystone_url": "http://192.168.10.4:5000/v2.0",
+      "username": "joe_user",
+      "password": "correcthorsebatterystaple",
+      "project_name": "worldpeace",
+      "mon_api_url": "http://192.168.10.4:8080/v2.0",
+      "service": "mini-mon"
     }
 
 
 # Recipes
 ## default
-The default recipe sets up the Monitoring Agent environment by installing
-the dependencies, then the mon-agent package itself, setting up logging
-directory and init script, and populating the configuration files with the
-contents of `data_bag_item(node[:mon_agent][:data_bag], 'mon_agent')`
+The default recipe sets up the Monitoring Agent and runs mon-setup to configure.
 
 ## plugin_cfg
 mon-agent plugins are configured in `/etc/mon-agent/conf.d/` as YAML files ending
