@@ -9,7 +9,7 @@ node.default[:mon_agent][:plugin][:host_alive][:init_config] = {
 }
 
 node.default[:mon_agent][:plugin][:host_alive][:instances][:api_with_ssh] = {
-  :name => "api_ssh_port"
+  :name => "api_ssh_port",
   :host_name => "192.168.10.4",
   :alive_test => "ssh"
 }
