@@ -3,12 +3,6 @@
 # Recipe:: plugin_cfg
 #
 
-# Common configuration
-service "mon-agent" do
-  action :enable
-  supports :restart => true
-end
-
 # Load nagios-plugins package if it's needed
 package 'nagios-plugins-basic' do
   action :install
@@ -31,6 +25,6 @@ node[:mon_agent][:plugin].each_key do |plugin|
       :init_config => node[:mon_agent][:plugin][plugin][:init_config],
       :instances => node[:mon_agent][:plugin][plugin][:instances]
     )
-    notifies :restart, "service[mon-agent]"
+    notifies :run, "execute[mon-setup]"
   end
 end
