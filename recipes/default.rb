@@ -1,7 +1,7 @@
 include_recipe "python"
 
 # Pre-reqs that when installed by os package avoid compilation by pip
-%w[python-psutil python-pymongo python-yaml supervisor sysstat].each do |pkg_name|
+%w[python-pymongo python-yaml supervisor sysstat].each do |pkg_name|
   package pkg_name do
     action :install
   end
