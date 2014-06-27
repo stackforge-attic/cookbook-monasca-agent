@@ -12,7 +12,7 @@ end
 # Configures the plugin yaml files based on node[:mon_agent][:plugin]
 # attributes
 node[:mon_agent][:plugin].each_key do |plugin|
-  if not node[:mon_agent][:plugin][plugin].has_key?(:init_config):
+  if not node[:mon_agent][:plugin][plugin].has_key?(:init_config)
     node[:mon_agent][:plugin][plugin][:init_config] = {}
   end
   template "/etc/mon-agent/conf.d/#{plugin}.yaml" do
