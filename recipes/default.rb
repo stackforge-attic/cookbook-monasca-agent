@@ -1,4 +1,6 @@
-include_recipe "python"
+# encoding: UTF-8#
+#
+include_recipe 'python'
 
 # Pre-reqs that when installed by os package avoid compilation by pip
 %w[python-pymongo python-yaml supervisor sysstat].each do |pkg_name|
@@ -15,7 +17,7 @@ end
 
 python_pip 'mon-agent' do
   action :install
-  notifies :run, "execute[mon-setup]"
+  notifies :run, 'execute[mon-setup]'
 end
 
 include_recipe 'mon_agent::plugin_cfg'
