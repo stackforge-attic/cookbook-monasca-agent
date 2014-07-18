@@ -1,10 +1,10 @@
 # encoding: UTF-8#
 #
-name             'mon_agent'
-maintainer       'HP_Cloud_Monitoring'
-maintainer_email 'hpcs-mon@hp.com'
-description      'Installs/Configures mon-agent components'
+name 'monasca_agent'
+maintainer 'monasca'
+maintainer_email 'monasca@lists.launchpad.net'
+description 'Installs/Configures monasca-agent components'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.1.2'
+version          '1.1.3'
 depends          'python'
 recipe 'mon_api::default', 'Default'
