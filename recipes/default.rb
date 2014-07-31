@@ -16,7 +16,7 @@ execute 'monasca-setup' do
 end
 
 python_pip 'monasca-agent' do
-  action :install
+  action :upgrade
   notifies :run, 'execute[monasca-setup]'
 end
 
