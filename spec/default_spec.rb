@@ -27,7 +27,7 @@ describe 'monasca_agent::default' do
     end
 
     it 'python_pip installs monasca-agent' do
-      expect(chef_run).to install_python_pip 'monasca-agent'
+      expect(chef_run).to upgrade_python_pip 'monasca-agent'
     end
 
     it 'executes the monasca-setup program' do

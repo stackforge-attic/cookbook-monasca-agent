@@ -2,8 +2,8 @@
 #
 include_recipe 'python'
 
-# Pre-reqs that when installed by os package avoid compilation by pip
-%w[python-pymongo python-yaml supervisor sysstat build-essential python-lxml].each do |pkg_name|
+# Pre-reqs that when installed by os packages avoid or enable compilation by pip as needed
+%w[python-pymongo python-yaml supervisor sysstat build-essential libxml2-dev libxslt1-dev].each do |pkg_name|
   package pkg_name do
     action :install
   end
@@ -16,7 +16,7 @@ execute 'monasca-setup' do
 end
 
 python_pip 'monasca-agent' do
-  action :install
+  action :upgrade
   notifies :run, 'execute[monasca-setup]'
 end
 
