@@ -1,4 +1,8 @@
-cookbooks-monasca-agent
+WARNING!!
+
+Monasca is now deployed via Ansible. This project is no longer maintained and may be out of date. It will be moved to the StackForge attic soon.
+
+cookbook-monasca-agent
 ===================
 
 # Overview
